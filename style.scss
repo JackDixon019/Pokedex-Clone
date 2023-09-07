@@ -8,25 +8,42 @@
     font-family: 'Pokemon Pixel Font';
     src: url('./resources/Pokemon-Pixel-Font.woff2') format('woff2');
 }
+@font-face {
+    font-family: 'Pokemon Solid Font';
+    src: url('./resources/PokemonSolidNormal.woff2') format('woff2');
+}
 
 body * {
     margin: 0px;
     padding: 0px;
-    font-family: 'Pokemon Pixel Font';
+    font-family: 'Pokemon Pixel Font', sans-serif;
     font-size: 20px;
 }
 
 #errorMessage {
     margin: 3%;
     color: red;
+    width: fit-content;
+    float: left;
+    display: none;
 }
 
 
+
+#title {
+    text-align: center;
+    font-family: 'Pokemon Solid Font', sans-serif;
+    color: yellow;
+    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: blue;
+
+}
 
 
 h1 {
     margin-top: 5dvh;
     font-size: 40px;
+    
 }
 h2 {
     margin-top: 2dvh;
@@ -44,6 +61,8 @@ ul {
 
 .type {
     padding: 2px;
+    position: relative;
+    top: -2px;
     padding-left: 4px;
     padding-right: 4px;
     margin-right: 8px;

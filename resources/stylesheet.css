@@ -1,9 +1,9 @@
 @font-face {
-    font-family: 'Pokemon Pixel Font';
-    src: url('Pokemon-Pixel-Font.eot');
-    src: url('Pokemon-Pixel-Font.eot?#iefix') format('embedded-opentype'),
-        url('Pokemon-Pixel-Font.woff2') format('woff2'),
-        url('Pokemon-Pixel-Font.woff') format('woff');
+    font-family: 'Pokemon Solid';
+    src: url('PokemonSolidNormal.eot');
+    src: url('PokemonSolidNormal.eot?#iefix') format('embedded-opentype'),
+        url('PokemonSolidNormal.woff2') format('woff2'),
+        url('PokemonSolidNormal.woff') format('woff');
     font-weight: normal;
     font-style: normal;
     font-display: swap;

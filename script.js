@@ -7,6 +7,42 @@ class LuxioError extends Error {
     }
 }
 
+let luxioErrorData = {
+    name: "File not found",
+    id: "404",
+    sprites: {
+        front_default:
+            "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/404.png",
+    },
+    types: [{ type: { name: "bug" } }, { type: { name: "electric" } }],
+    abilities: [
+        {
+            ability: {
+                name: "Error",
+            },
+        },
+    ],
+};
+
+function errorData(error) {
+    let errorData = {
+        name: error.name.toString(),
+        id: error.message.toString(),
+        sprites: {
+            front_default: "./resources/MissingNo.png",
+        },
+        types: [{ type: { name: "bug" } }, { type: { name: "electric" } }],
+        abilities: [
+            {
+                ability: {
+                    name: "Error",
+                },
+            },
+        ],
+    };
+    return errorData;
+}
+
 // Object of types and their associated colours
 let typesObject = {
     Normal: {
@@ -102,6 +138,10 @@ function getPokemonData(name) {
 
 // Asynchronously runs the getPokemonData function, converts result to JSON
 async function retrieveData(name) {
+    // doesn't call if no data entered
+    if (!name) {
+        return;
+    }
     let rawData = await getPokemonData(name);
     if (rawData.status == "404") {
         throw new LuxioError("404", "Pokemon not found");
@@ -112,16 +152,17 @@ async function retrieveData(name) {
 
 // builds picture element
 function constructSprite(data) {
-    let sprite = document.createElement("img")
-    sprite.src = data.sprites.front_default
-    sprite.style.float = "left"
-    return sprite
+    let sprite = document.createElement("img");
+    sprite.src = data.sprites.front_default;
+    sprite.style.float = "left";
+    return sprite;
 }
 
 // Builds Name element
 function constructName(data) {
     let name = document.createElement("h1");
     name.innerText = `Name: ${capitalise(data.name)}`;
+    name.style.whiteSpace = "nowrap";
     return name;
 }
 
@@ -136,6 +177,7 @@ function constructID(data) {
 function constructTypes(data) {
     let types = document.createElement("h2");
     types.innerText = `Type(s): `;
+    types.style.whiteSpace = "nowrap";
 
     // Pokemon can have 1 or 2 types
     for (type of data.types) {
@@ -173,13 +215,20 @@ function constructAbilitiesList(data) {
     return abilitiesList;
 }
 
+function constructMovesList(data) {
+    let movesList = document.createElement("table");
+}
+
 function buildResult(data) {
     console.log(data);
     let resultsDiv = document.getElementById("searchResult");
     resultsDiv.innerHTML = "";
-    resultsDiv.style.marginLeft = "30dvw"
+    resultsDiv.style.textAlign = "center";
+    resultsDiv.style.width = "fit-content";
+    resultsDiv.style.margin = "auto";
 
-    let sprite = constructSprite(data)
+    // constructs each element 
+    let sprite = constructSprite(data);
 
     let name = constructName(data);
 
@@ -192,8 +241,17 @@ function buildResult(data) {
 
     let abilitiesList = constructAbilitiesList(data);
 
-    let childrenToAppend = [sprite, name, id, types, abilitiesTitle, abilitiesList];
+    // This list format makes it easier to add new elements in the future
+    let childrenToAppend = [
+        sprite,
+        name,
+        id,
+        types,
+        abilitiesTitle,
+        abilitiesList,
+    ];
 
+    // appends all elements in above list as children of resultsDiv node
     for (element of childrenToAppend) {
         resultsDiv.appendChild(element);
     }
@@ -201,27 +259,55 @@ function buildResult(data) {
 
 let submitButton = document.getElementById("nameSearchSubmit");
 submitButton.addEventListener("click", (event) => {
+
+    // prevents refresh
     event.preventDefault();
+
+    // gets elements used later
     let nameField = document.getElementById("nameSearch");
     let nameSearched = nameField.value.toLowerCase();
     let errorMessage = document.getElementById("errorMessage");
-    errorMessage.innerText = ""
-    try {
-        retrieveData(nameSearched)
-            .then((data) => buildResult(data))
-            .catch((error) => {
-                let errorMessage = document.getElementById("errorMessage");
-                errorMessage.innerText = "An error has occurred: " + error.name + " \n" + error.message
 
-                retrieveData("luxio").then(data => buildResult(data))
-                console.log(
+    // displays "searching..." while making API call
+    errorMessage.innerText = "Searching...";
+    errorMessage.style.display = "inherit";
+
+    // calls API
+    retrieveData(nameSearched)
+        .then((data) => {
+            // Builds result
+            buildResult(data);
+            // Hides "searching..."
+            errorMessage.style.display = "none";
+        })
+        .catch((error) => {
+            let errorMessage = document.getElementById("errorMessage");
+            // This occurs when user enters no data to search
+            if (error.message == "data is undefined") {
+                errorMessage.innerText = "Please enter a pokemon's name or ID";
+                // Stops escalation when user enters no data. I.E does not build an error result.
+                return;
+            }
+            // Displays error
+            errorMessage.innerText =
+                "An error has occurred: " + error.name + " \n" + error.message;
+
+            // Real ones get it
+            if (error.name == "404") {
+                buildResult(luxioErrorData);
+            } else {
+                // Returns funny little result with missingno sprite and Name: error.name
+                buildResult(errorData(error));
+            }
+
+            // also logs error to console.
+            console.log(
+                Error(
                     "An error has occurred: " +
                         error.name +
                         " \n" +
                         error.message
-                );
-            });
-    } catch (error) {
-        console.log(error.message);
-    }
+                )
+            );
+        });
 });
