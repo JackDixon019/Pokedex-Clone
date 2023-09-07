@@ -6,11 +6,11 @@
 
 @font-face {
   font-family: "Pokemon Pixel Font";
-  src: url("./resources/Pokemon-Pixel-Font.woff2") format("woff2");
+  src: url("./resources//fonts/Pokemon-Pixel-Font.woff2") format("woff2");
 }
 @font-face {
   font-family: "Pokemon Solid Font";
-  src: url("./resources/PokemonSolidNormal.woff2") format("woff2");
+  src: url("./resources/fonts/PokemonSolidNormal.woff2") format("woff2");
 }
 body * {
   margin: 0px;
