@@ -8,21 +8,24 @@
 
 </head>
 <body>
-    <h1 id="title">Pokemons</h1>
-    <br>
-    <h5>How to use:</h5>
-    <p>Enter the ID or name of the pokemon you would like to search for. </p>
-    <p>For regional variants, search by [name]-[region]</p>
-    <p>e.g. "persian-alola"</p>
-    <br>
-    <form>
-        <label for="nameSearch">Enter name or ID: </label>
-        <input type="text" name="nameSearch" id="nameSearch" />
-        <button type="submit" id="nameSearchSubmit">Search</button>
-    </form>
-    <div id="errorMessage"></div>
-    <div id="searchResult">
-
+    <div id="wrapper">
+        <h1 id="title">Pokemons</h1>
+        <br>
+        <div id="info">
+            <h5>How to use:</h5>
+            <p>Enter the ID or name of the pokemon you would like to search for. </p>
+            <p>For regional variants, search by [name]-[region]</p>
+            <p>e.g. "persian-alola"</p>
+            <br>
+            <form>
+                <label for="nameSearch">Enter name or ID: </label>
+                <input type="text" name="nameSearch" id="nameSearch" />
+                <button type="submit" id="nameSearchSubmit">Search</button>
+            </form>
+        </div>
+        <div id="errorMessage"></div>
+        <div id="searchResult"> 
+        </div>
     </div>
     <script src="script.js"></script>
 </body>

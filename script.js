@@ -154,7 +154,8 @@ async function retrieveData(name) {
 function constructSprite(data) {
     let sprite = document.createElement("img");
     sprite.src = data.sprites.front_default;
-    sprite.style.float = "left";
+    sprite.style.float = "right";
+    
     return sprite;
 }
 
@@ -223,9 +224,15 @@ function buildResult(data) {
     console.log(data);
     let resultsDiv = document.getElementById("searchResult");
     resultsDiv.innerHTML = "";
-    resultsDiv.style.textAlign = "center";
-    resultsDiv.style.width = "fit-content";
+    resultsDiv.style.textAlign = "left";
+    resultsDiv.style.paddingTop = "40px";
+
+    resultsDiv.style.width = "25dvw";
+    resultsDiv.style.minWidth = "200px";
     resultsDiv.style.margin = "auto";
+    resultsDiv.style.display = "flex";
+    resultsDiv.style.flexDirection = "column";
+
 
     // constructs each element 
     let sprite = constructSprite(data);
@@ -233,7 +240,11 @@ function buildResult(data) {
     let name = constructName(data);
 
     let id = constructID(data);
-
+    
+    // These are appended to name for display purposes
+    name.appendChild(sprite)
+    name.appendChild(id)
+    
     let types = constructTypes(data);
 
     let abilitiesTitle = document.createElement("h2");
@@ -243,9 +254,7 @@ function buildResult(data) {
 
     // This list format makes it easier to add new elements in the future
     let childrenToAppend = [
-        sprite,
         name,
-        id,
         types,
         abilitiesTitle,
         abilitiesList,

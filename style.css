@@ -19,16 +19,25 @@ body * {
   font-size: 20px;
 }
 
-#errorMessage {
-  margin: 3%;
-  color: red;
+#info {
+  text-align: left;
   width: -moz-fit-content;
   width: fit-content;
-  float: left;
+  margin: auto;
+}
+
+#errorMessage {
+  color: red;
+  width: 100dvw;
   display: none;
+  text-align: center;
+  margin: auto;
+  padding: 20px;
+  position: absolute;
 }
 
 #title {
+  font-size: 80px;
   text-align: center;
   font-family: "Pokemon Solid Font", sans-serif;
   color: yellow;
