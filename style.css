@@ -67,8 +67,12 @@ ul {
   margin-left: 3dvw;
 }
 
+label {
+  padding-right: 2%;
+}
+
 input {
-  padding-left: 1%;
+  padding-left: 2%;
 }
 
 .type {
