@@ -1,0 +1,57 @@
+:root {
+    --typeBgColour: #A8A878;
+    --typeBorderColour: #6D6D4E;
+    --typeFontColour: white;
+}
+
+@font-face {
+    font-family: 'Pokemon Pixel Font';
+    src: url('./resources/Pokemon-Pixel-Font.woff2') format('woff2');
+}
+
+body * {
+    margin: 0px;
+    padding: 0px;
+    font-family: 'Pokemon Pixel Font';
+    font-size: 20px;
+}
+
+#errorMessage {
+    margin: 3%;
+    color: red;
+}
+
+
+
+
+h1 {
+    margin-top: 5dvh;
+    font-size: 40px;
+}
+h2 {
+    margin-top: 2dvh;
+    font-size: 28px;
+}
+h3 {
+    font-size: 24px;
+}
+h5 {
+    font-size: 24px;
+}
+ul {
+    margin-left: 3dvw;
+}
+
+.type {
+    padding: 2px;
+    padding-left: 4px;
+    padding-right: 4px;
+    margin-right: 8px;
+    border-radius: 20px;
+    background: var(--typeBgColour) ;
+    border: 1px solid var(--typeBorderColour);
+    color: var(--typeFontColour);
+    font-size: 50%;
+    font-weight: 500;
+    font-family: sans-serif;
+}

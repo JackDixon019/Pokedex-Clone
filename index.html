@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+    <h1>Pokemons</h1>
+    <br>
+    <h5>How to use:</h5>
+    <p>Enter the ID or name of the pokemon you would like to search for. </p>
+    <p>For regional variants, search by [name]-[region]</p>
+    <p>e.g. "persian-alola"</p>
+    <br>
+    <form>
+        <label for="nameSearch">Enter name or ID: </label>
+        <input type="text" name="nameSearch" id="nameSearch" />
+        <button type="submit" id="nameSearchSubmit">Search</button>
+    </form>
+    <div id="errorMessage"></div>
+    <div id="searchResult">
+
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
