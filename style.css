@@ -67,6 +67,10 @@ ul {
   margin-left: 3dvw;
 }
 
+input {
+  padding-left: 1%;
+}
+
 .type {
   padding: 2px;
   position: relative;
